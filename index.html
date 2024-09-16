@@ -1,43 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>随机背景图片</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-size: cover;
-            background-position: center;
+            height: 100%;
         }
-        h1 {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+        body {
+            /* 设置背景图片的样式 */
+            background-size: cover;  /* 按比例放大到占满屏幕 */
+            background-position: center; /* 居中显示 */
+            background-repeat: no-repeat; /* 不重复背景 */
         }
     </style>
 </head>
 <body>
 
-<h1>随机背景图片</h1>
-
 <script>
-    // 预先保存从 Pinterest 网页中手动获取的图片 URL 列表
-    const imageUrls = [
-        'https://i.pinimg.com/564x/a2/a9/c7/a2a9c7b7f4d4bf796352291bbf1ea761.jpg,
-
-        // 更多图片URL...
+    // 给定的图片地址数组
+    const images = [
+        'https://i.pinimg.com/564x/a2/a9/c7/a2a9c7b7f4d4bf796352291bbf1ea761.jpg',
+ 
+ 
     ];
 
-    // 随机选取一个图片
-    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    // 随机选取一张图片
+    const randomImage = images[Math.floor(Math.random() * images.length)];
 
-    // 将随机选取的图片设置为背景
-    document.body.style.backgroundImage = `url(${randomImageUrl})`;
+    // 设置背景图片
+    document.body.style.backgroundImage = `url(${randomImage})`;
 </script>
 
 </body>
