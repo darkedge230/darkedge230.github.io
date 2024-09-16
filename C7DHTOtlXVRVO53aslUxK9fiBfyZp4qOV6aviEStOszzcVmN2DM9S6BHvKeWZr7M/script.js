@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to show the quote button and later reveal the article and header bar
   function showQuote() {
     quoteButton.style.display = "block";
-    quoteButton.style.opacity = "0.8";
+    quoteButton.style.opacity = "0";
     quoteButton.style.transition = "opacity 4s";
     quoteButton.style.opacity = "0.8";
 
