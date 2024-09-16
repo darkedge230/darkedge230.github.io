@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机背景图片</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>随机背景图片</h1>
+    <script>
+        async function setRandomBackgroundImage() {
+            const url = 'https://www.pinterest.jp/pin/740279257530082599/';
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const imageUrls = [...text.matchAll(/https:\/\/i\.pinimg\.com\/[^"]+/g)].map(match => match[0]);
+                if (imageUrls.length > 0) {
+                    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+                    document.body.style.backgroundImage = `url(${randomImageUrl})`;
+                } else {
+                    console.error('未找到图片URL');
+                }
+            } catch (error) {
+                console.error('获取图片失败:', error);
+            }
+        }
+
+        setRandomBackgroundImage();
+    </script>
+</body>
+</html>
