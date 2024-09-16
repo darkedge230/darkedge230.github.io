@@ -1,46 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机生成不可记忆链接</title>
-    <script>
-        // 生成随机字符串函数
-        function generateRandomString(length) {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let result = '';
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            return result;
-        }
+    <meta http-equiv="refresh" content="0; url=https://ishortn.ink/a2AtpQgP6">
 
-        // 生成随机链接并跳转
-        function randomLink() {
-            // 定义本地 HTML 页面和随机字符串的映射关系
-            const pageMap = {
-                'page1': 'C7DHTOtlXVRVO53aslUxK9fiBfyZp4qOV6aviEStOszzcVmN2DM9S6BHvKeWZr7M/main.html',
-
-            };
-
-            // 随机选择一个键值对 (页面ID: 文件名)
-            const pageKeys = Object.keys(pageMap);
-            const randomKey = pageKeys[Math.floor(Math.random() * pageKeys.length)];
-            const randomPage = pageMap[randomKey];
-
-            // 生成随机字符串作为URL路径的一部分
-            const randomString = generateRandomString(10);
-
-            // 创建带有随机字符串的动态链接
-            const dynamicLink = `/${randomString}/${randomPage}`;
-            
-            // 跳转到该动态链接页面
-            window.location.href = dynamicLink;
-        }
-    </script>
 </head>
-<body>
-    <h1>点击生成随机链接并进入页面</h1>
-    <button onclick="randomLink()">生成随机链接并跳转</button>
-</body>
+
 </html>
