@@ -5,25 +5,6 @@ document
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); // 滚动到页面底部
   });
 
-let videoInitiated = false;
-
-function enableVideoAutoplay() {
-  let video = document.getElementById("background-video");
-  let playButton = document.getElementById("play-button");
-  if (!videoInitiated) {
-    video
-      .play()
-      .then(() => {
-        video.style.opacity = "1"; // 视频成功播放后淡入
-        video.muted = false; // 取消静音
-        videoInitiated = true; // 设置为 true 以防止进一步的自动播放尝试
-        playButton.classList.add("fade-out"); // 触发播放按钮的淡出动画
-      })
-      .catch((err) => {
-        console.log("Video play failed: ", err);
-      });
-  }
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   const quoteButton = document.getElementById("quote-button");
