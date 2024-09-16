@@ -245,29 +245,10 @@ p::selection {
 
 
 
-body {
-	display: grid;
-	place-items: center;
-	min-height: 100vh;
-	font-family:  "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
-	background: linear-gradient(50deg, hsl(0 0% 50% / 0.25), transparent), hsl(0 0% 0%);
-	overflow: hidden;
-}
 
 
-#background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -10;
-  object-fit: cover;
-  object-position: left bottom;
-  opacity: 0; /* 默认显示视频，且无透明 */
-  transition: opacity 2s, filter 2s; /* 增加过滤器和透明度的平滑过渡 */
-  filter: blur(0px); /* 默认不模糊 */
-}
+
+
 
 
 article {
@@ -316,11 +297,7 @@ img {
   object-fit: cover;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  
-}
+
 
 
 
