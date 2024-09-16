@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="404.css">
+<link rel="stylesheet" href="main.css">
 
 
 <a
       class="bear-link"
-      href="https://twitter.com/intent/follow?screen_name=jh3yy"
+      href=""
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -58,10 +58,7 @@
         ></path>
       </svg>
     </a>
-    <h1>
-      404
-      <span aria-hidden="true">404</span>
-    </h1>
+
     <div class="cloak__wrapper">
       <div class="cloak__container">
         <div class="cloak"></div>
