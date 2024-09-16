@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机背景图片</title>
+
     <style>
         html, body {
             margin: 0;
@@ -11,29 +11,54 @@
             height: 100%;
         }
 
-        body {
-            /* 设置背景图片的样式 */
-            background-size: cover;  /* 按比例放大到占满屏幕 */
+        /* 包裹背景图片的容器 */
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* 按比例放大到占满屏幕 */
             background-position: center; /* 居中显示 */
             background-repeat: no-repeat; /* 不重复背景 */
+            filter: blur(10px); /* 添加模糊特效 */
+            z-index: -1; /* 将背景图片放置在内容后面 */
+        }
+
+        /* 让前景内容可以正常显示 */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
         }
     </style>
 </head>
 <body>
 
+<!-- 背景图片的容器 -->
+<div class="background-container"></div>
+
+<!-- 页面中的前景内容 -->
+<div class="content">
+    随机背景图片带模糊效果
+</div>
+
 <script>
     // 给定的图片地址数组
     const images = [
         'https://i.pinimg.com/564x/a2/a9/c7/a2a9c7b7f4d4bf796352291bbf1ea761.jpg',
- 
- 
+
     ];
 
     // 随机选取一张图片
     const randomImage = images[Math.floor(Math.random() * images.length)];
 
     // 设置背景图片
-    document.body.style.backgroundImage = `url(${randomImage})`;
+    document.querySelector('.background-container').style.backgroundImage = `url(${randomImage})`;
 </script>
 
 </body>
