@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +8,49 @@
         body {
             margin: 0;
             padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-size: cover;
-            background-position: center;
         }
     </style>
 </head>
 <body>
     <h1>随机背景图片</h1>
-    <script>
-        async function setRandomBackgroundImage() {
-            const url = 'https://www.pinterest.jp/pin/740279257530082599/';
-            try {
-                const response = await fetch(url);
-                const text = await response.text();
-                const imageUrls = [...text.matchAll(/https:\/\/i\.pinimg\.com\/[^"]+/g)].map(match => match[0]);
-                if (imageUrls.length > 0) {
-                    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-                    document.body.style.backgroundImage = `url(${randomImageUrl})`;
-                } else {
-                    console.error('未找到图片URL');
-                }
-            } catch (error) {
-                console.error('获取图片失败:', error);
-            }
-        }
 
-        setRandomBackgroundImage();
+    <script>
+        const targetUrl = 'https://www.pinterest.jp/pin/740279257530082599/';
+
+        // Fetch the HTML content of the target URL
+        fetch(targetUrl)
+        .then(response => response.text())
+        .then(html => {
+            // Create a temporary DOM element to parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Find all images in the parsed document
+            const images = doc.querySelectorAll('img');
+
+            // Extract the src attribute of each image and store in an array
+            const imageUrls = Array.from(images).map(img => img.src);
+
+            if (imageUrls.length > 0) {
+                // Randomly select an image from the array
+                const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+
+                // Set the selected image as the background of the body
+                document.body.style.backgroundImage = `url(${randomImage})`;
+            } else {
+                console.error('No images found on the page.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching the page:', error);
+        });
     </script>
 </body>
 </html>
