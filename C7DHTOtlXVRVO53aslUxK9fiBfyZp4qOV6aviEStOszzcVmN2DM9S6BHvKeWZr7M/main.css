@@ -19,7 +19,6 @@ body {
   z-index: -10;
   object-fit: cover;
   object-position: left bottom;
-  transition: opacity 2s, filter 2s; /* 增加过滤器和透明度的平滑过渡 */
   filter: blur(0px); /* 默认不模糊 */
 }
 
