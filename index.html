@@ -8,49 +8,37 @@
         body {
             margin: 0;
             padding: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body>
-    <h1>随机背景图片</h1>
 
-    <script>
-        const targetUrl = 'https://www.pinterest.jp/pin/740279257530082599/';
+<h1>随机背景图片</h1>
 
-        // Fetch the HTML content of the target URL
-        fetch(targetUrl)
-        .then(response => response.text())
-        .then(html => {
-            // Create a temporary DOM element to parse the HTML
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
+<script>
+    // 预先保存从 Pinterest 网页中手动获取的图片 URL 列表
+    const imageUrls = [
+        'https://i.pinimg.com/564x/a2/a9/c7/a2a9c7b7f4d4bf796352291bbf1ea761.jpg,
 
-            // Find all images in the parsed document
-            const images = doc.querySelectorAll('img');
+        // 更多图片URL...
+    ];
 
-            // Extract the src attribute of each image and store in an array
-            const imageUrls = Array.from(images).map(img => img.src);
+    // 随机选取一个图片
+    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
 
-            if (imageUrls.length > 0) {
-                // Randomly select an image from the array
-                const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    // 将随机选取的图片设置为背景
+    document.body.style.backgroundImage = `url(${randomImageUrl})`;
+</script>
 
-                // Set the selected image as the background of the body
-                document.body.style.backgroundImage = `url(${randomImage})`;
-            } else {
-                console.error('No images found on the page.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching the page:', error);
-        });
-    </script>
 </body>
 </html>
