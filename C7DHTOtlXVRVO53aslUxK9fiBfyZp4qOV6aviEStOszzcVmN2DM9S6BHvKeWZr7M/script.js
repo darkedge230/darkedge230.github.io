@@ -67,5 +67,39 @@ document.addEventListener("click", function () {
 });
 
 
+        // 定义标记和时间检查函数
+        function checkVisitor() {
+            const currentTime = new Date().getTime();  // 获取当前时间戳
+            const visitor = localStorage.getItem('visitor');  // 获取访问者标记
+            const visitTime = localStorage.getItem('visitTime');  // 获取访问者的访问时间
+
+            if (visitor && visitTime) {
+                // 计算访问时间与当前时间的差值，单位为毫秒
+                const timeDifference = currentTime - visitTime;
+                
+                // 检查是否超过10分钟（10 * 60 * 1000 毫秒）
+                if (timeDifference > 10 * 60 * 1000) {
+                    // 如果超过10分钟，移除标记并跳转
+                    localStorage.removeItem('visitor');
+                    localStorage.removeItem('visitTime');
+                    window.location.href = "https://ishortn.ink/a2AtpQgP6";  // 跳转到指定页面
+                } else {
+                    console.log('已标记的访问者，继续浏览页面');
+                }
+            } else {
+                // 如果没有标记，则进行标记并记录访问时间
+                localStorage.setItem('visitor', 'true');
+                localStorage.setItem('visitTime', currentTime);
+                console.log('新访问者，已标记');
+            }
+        }
+
+        // 在页面加载完成后检查访问者状态
+        window.onload = function() {
+            checkVisitor();
+        }
+
+
+
 
 
