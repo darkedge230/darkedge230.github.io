@@ -28,6 +28,25 @@
 
 
 
+
+
+        // 平滑滚动到指定元素
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth', // 平滑滚动
+                    block: 'start'      // 元素的顶部与视口顶部对齐
+                });
+            }
+        }
+
+
+
+
+
+
+
 document
   .querySelector('a[href="#footer"]')
   .addEventListener("click", function (e) {
