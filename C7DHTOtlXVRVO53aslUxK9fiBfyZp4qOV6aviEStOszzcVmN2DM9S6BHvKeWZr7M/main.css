@@ -756,9 +756,6 @@ template {
 
         .container {
             display: inline-block;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
         }
 
 
