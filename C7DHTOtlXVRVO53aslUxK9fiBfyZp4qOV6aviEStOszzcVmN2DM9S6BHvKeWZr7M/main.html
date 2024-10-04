@@ -7,6 +7,22 @@
     <meta charset="UTF-8">
 	<link rel="icon" href="./img/hole.png" type="image/png">
     <title></title>
+
+
+<script>
+    // 平滑滚动函数，确保定义在全局作用域中
+    function scrollToElement(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth', // 平滑滚动
+                block: 'start'      // 将目标元素的顶部与视口顶部对齐
+            });
+        }
+    }
+</script>
+	
+	
 </head>
 
 
