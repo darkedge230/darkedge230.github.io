@@ -749,7 +749,57 @@ template {
 
 
 
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 每张图片之间的间隔 */
+            align-items: center;
+        }
+        .preview-img {
+            object-fit: cover; /* 确保无边框显示 */
+            border: none;
+        }
 
+        /* 第一种图片类型 */
+        .img-type-1 {
+            width: 600px;
+            height: auto;
+            min-height: 100px;
+            max-height: 600px;
+        }
+
+        /* 第二种图片类型 */
+        .img-type-2 {
+            width: 300px;
+            height: auto;
+            min-height: 50px;
+            max-height: 300px;
+        }
+
+        /* 原图全屏显示 */
+        .fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .fullscreen img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* 点击图片后显示大图 */
+        :target {
+            display: flex;
+        }
 
 
 
