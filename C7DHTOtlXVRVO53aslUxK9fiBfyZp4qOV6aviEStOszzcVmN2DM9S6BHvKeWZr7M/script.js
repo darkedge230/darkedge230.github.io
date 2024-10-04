@@ -121,6 +121,11 @@ previewImgs.forEach(imgContainer => {
     imgContainer.addEventListener('click', function() {
         const imgSrc = this.querySelector('img').src;
         previewImage.src = imgSrc;
+
+        // 获取当前滚动位置
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        previewOverlay.style.top = scrollTop + 'px';
+
         previewOverlay.classList.add('active');
     });
 });
@@ -129,6 +134,7 @@ previewImgs.forEach(imgContainer => {
 previewOverlay.addEventListener('click', function(e) {
     if (e.target === previewOverlay) {
         previewOverlay.classList.remove('active');
+        previewOverlay.style.top = '0'; // 重置位置
     }
 });
 
