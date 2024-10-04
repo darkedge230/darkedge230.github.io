@@ -109,7 +109,28 @@ document.addEventListener("click", function () {
 
 
 
+// preview.js
 
+// 获取所有的预览img容器和预览层
+const previewImgs = document.querySelectorAll('.预览img');
+const previewOverlay = document.getElementById('preview-overlay');
+const previewImage = document.getElementById('preview-image');
+
+// 为每个预览img添加点击事件
+previewImgs.forEach(imgContainer => {
+    imgContainer.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        previewImage.src = imgSrc;
+        previewOverlay.classList.add('active');
+    });
+});
+
+// 点击空白处关闭预览
+previewOverlay.addEventListener('click', function(e) {
+    if (e.target === previewOverlay) {
+        previewOverlay.classList.remove('active');
+    }
+});
 
 
 
