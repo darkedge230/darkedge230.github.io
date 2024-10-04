@@ -756,10 +756,13 @@ template {
 
         .container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* 改为水平排列 */
             align-items: center;
             gap: 20px;
+            flex-wrap: nowrap; /* 禁止换行 */
+            overflow-x: auto;  /* 如果内容超出，则水平滚动 */
         }
+
 
         /* 设置图片样式 */
         .预览img {
