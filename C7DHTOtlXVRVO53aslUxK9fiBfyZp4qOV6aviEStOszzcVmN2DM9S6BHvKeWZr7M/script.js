@@ -97,7 +97,7 @@ document.addEventListener("click", function () {
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector('.image-containerr');  // 修复了这个选择器
 
-    if (container) {  // 增加容错处理，确保容器存在
+    if (container) {
         container.addEventListener('click', function(event) {
             if (event.target.tagName === 'IMG') {
                 openPreview(event.target.src);
@@ -109,13 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const preview = document.createElement('div');
         preview.className = 'preview-img';
         preview.style.position = 'fixed';
-        preview.style.top = window.scrollY + 'px';
+        preview.style.top = '0'; // 设为0，让它从页面顶部开始
         preview.style.left = '0';
         preview.style.width = '100vw';
         preview.style.height = '100vh';
         preview.style.display = 'flex';
-        preview.style.alignItems = 'center';
-        preview.style.justifyContent = 'center';
+        preview.style.alignItems = 'center'; // 垂直居中
+        preview.style.justifyContent = 'center'; // 水平居中
         preview.style.backgroundColor = 'rgba(0,0,0,0.8)';
 
         const img = document.createElement('img');
@@ -131,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 
 
