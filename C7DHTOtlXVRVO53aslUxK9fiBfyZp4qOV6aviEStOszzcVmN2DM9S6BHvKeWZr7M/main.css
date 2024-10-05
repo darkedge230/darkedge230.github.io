@@ -219,7 +219,7 @@ a {
   font-size: 24px; /* 设置字体大小 */
   font-weight: bolder; /* 设置文本为更粗体 */
   text-transform: uppercase; /* 将文本转换为大写 */
-  max-width: 520px;
+  max-width: 600px;
   word-wrap: break-word; /* 长的单词自动换行 */
   white-space: normal; /* 确保文字正常换行 */
 }
