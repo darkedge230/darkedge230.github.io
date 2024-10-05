@@ -185,8 +185,6 @@ a {
   align-items: flex-start; /* 气泡靠左排列 */
   padding: 10px 0; /* 只有上下边距 */
   width: 100%; /* 容器宽度调整 */
-  max-width: 600px;
-  word-wrap: break-word;
 }
 
 /* 气泡内容，包括文本 */
