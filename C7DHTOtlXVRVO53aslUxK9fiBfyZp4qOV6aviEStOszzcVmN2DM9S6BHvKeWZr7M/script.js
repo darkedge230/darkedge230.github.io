@@ -95,7 +95,7 @@ document.addEventListener("click", function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const containers = document.querySelectorAll('.image-containerr');  // 获取所有的 image-containerr
+    const containers = document.querySelectorAll('.image-containerr'); // 获取所有的 image-containerr 容器
 
     containers.forEach(container => {
         container.addEventListener('click', function(event) {
@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function openPreview(src) {
+        // 创建预览层
         const preview = document.createElement('div');
         preview.className = 'preview-img';
         preview.style.position = 'fixed';
@@ -116,26 +117,46 @@ document.addEventListener("DOMContentLoaded", () => {
         preview.style.display = 'flex';
         preview.style.alignItems = 'center';
         preview.style.justifyContent = 'center';
-        preview.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        preview.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        preview.style.opacity = '0';  // 初始透明度为 0
+        preview.style.transition = 'opacity 0.5s ease';  // 渐变效果
         preview.style.zIndex = '99999';  // 确保预览层处于最上层
 
+        // 创建图片
         const img = document.createElement('img');
         img.src = src;
         img.style.maxWidth = '90%';
         img.style.maxHeight = '90%';
-        img.style.zIndex = '100000';  // 确保图片也处于最上层
+        img.style.opacity = '0';  // 图片初始透明度为 0
+        img.style.transition = 'opacity 0.5s ease';  // 渐变效果
+        img.style.zIndex = '100000';
 
+        // 将图片添加到预览层中
         preview.appendChild(img);
         document.body.appendChild(preview);
 
-        // 点击预览层任何地方关闭
+        // 设置渐变显示效果
+        setTimeout(() => {
+            preview.style.opacity = '1';  // 使预览层逐渐显示
+            img.style.opacity = '1';  // 使图片逐渐显示
+        }, 10);  // 短暂延迟，确保元素已经插入 DOM
+
+        // 关闭预览层（点击空白处）
         preview.addEventListener('click', function(event) {
             if (event.target !== img) {  // 确保点击的是背景，而不是图片
-                preview.remove();
+                // 开始渐变关闭效果
+                preview.style.opacity = '0';  // 设置预览层渐变隐藏
+                img.style.opacity = '0';  // 设置图片渐变隐藏
+
+                // 延迟移除元素，等待渐变效果完成
+                setTimeout(() => {
+                    preview.remove();
+                }, 500);  // 500ms 对应的是 `transition` 的持续时间
             }
         });
     }
 });
+
 
 
 
