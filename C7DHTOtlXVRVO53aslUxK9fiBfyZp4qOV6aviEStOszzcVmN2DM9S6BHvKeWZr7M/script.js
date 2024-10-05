@@ -221,8 +221,8 @@ function createBackToTopButton() {
     const backToTopButton = document.createElement('div');
     backToTopButton.innerHTML = '&#x25B2;'; // 上箭头符号
     backToTopButton.style.position = 'fixed';
-    backToTopButton.style.bottom = '20px';
-    backToTopButton.style.right = '600px';
+    backToTopButton.style.bottom = '50px';
+    backToTopButton.style.right = '20px';
     backToTopButton.style.width = '50px';
     backToTopButton.style.height = '50px';
     backToTopButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 透明背景
