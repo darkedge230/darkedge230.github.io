@@ -158,26 +158,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    let lastPlayedVideo = null; // 记录上一个播放的视频
-    let secondLastPlayedVideo = null; // 记录上上一个播放的视频
+    const videos = document.querySelectorAll('video'); // 获取页面中的所有视频
+    let videoStates = []; // 用来存储每个视频的状态，0表示未播放，1表示当前播放，其他数字表示播放顺序
 
-    const videos = document.querySelectorAll('video'); // 获取页面中的所有视频元素
+    // 初始化每个视频的标记状态为 0
+    videos.forEach(() => {
+        videoStates.push(0); // 将每个视频的初始状态设为 0（未播放）
+    });
 
-    videos.forEach(video => {
-        video.addEventListener('play', function() {
-            // 暂停上上一个播放的视频
-            if (secondLastPlayedVideo && secondLastPlayedVideo !== video) {
-                secondLastPlayedVideo.pause();
-                console.log("暂停第二个视频:", secondLastPlayedVideo.currentSrc);
+    // 给每个视频添加事件监听
+    videos.forEach((video, index) => {
+        video.addEventListener('play', function () {
+            // 找到当前标记为 1 的视频并暂停它
+            const currentlyPlayingIndex = videoStates.indexOf(1); // 查找状态为 1 的视频索引
+            if (currentlyPlayingIndex !== -1 && currentlyPlayingIndex !== index) {
+                videos[currentlyPlayingIndex].pause(); // 暂停标记为 1 的视频
+                console.log(`暂停视频：${videos[currentlyPlayingIndex].currentSrc}`);
             }
 
-            // 将上一个播放的视频设置为上上个
-            secondLastPlayedVideo = lastPlayedVideo;
+            // 更新状态
+            videoStates[currentlyPlayingIndex] = currentlyPlayingIndex === -1 ? 0 : 0; // 将暂停的视频状态改为 0
+            videoStates[index] = 1; // 当前播放的视频标记为 1
 
-            // 更新当前播放的视频
-            lastPlayedVideo = video;
-
-            console.log("当前播放的视频:", video.currentSrc);
+            console.log(`当前播放视频：${video.currentSrc}，状态：`, videoStates);
         });
     });
 });
