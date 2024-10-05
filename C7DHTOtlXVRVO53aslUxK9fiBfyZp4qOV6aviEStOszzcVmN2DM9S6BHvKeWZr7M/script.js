@@ -96,6 +96,13 @@ document.addEventListener("click", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const mediaContainers = document.querySelectorAll('.media-container'); // 获取所有的 media-container 容器
+    const videos = document.querySelectorAll('video'); // 获取所有的视频
+
+    // 禁止视频在页面加载时播放
+    videos.forEach(video => {
+        video.pause(); // 确保视频在没有点击时处于暂停状态
+        video.controls = false; // 禁用视频的控制条
+    });
 
     mediaContainers.forEach(container => {
         container.addEventListener('click', function(event) {
@@ -118,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (type === 'VIDEO') {
             media = document.createElement('video');
             media.src = src;
-            media.controls = true;  // 视频控制
-            media.autoplay = true;  // 自动播放
+            media.controls = true;  // 只有在预览时启用视频控制
+            media.autoplay = true;  // 点击后自动播放
         }
         media.style.opacity = '0';  // 初始透明度为 0
 
@@ -147,40 +154,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
-
-
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll('video'); // 获取页面中的所有视频
-    let videoStates = []; // 用来存储每个视频的状态，0表示未播放，1表示当前播放，其他数字表示播放顺序
-
-    // 初始化每个视频的标记状态为 0
-    videos.forEach(() => {
-        videoStates.push(0); // 将每个视频的初始状态设为 0（未播放）
-    });
-
-    // 给每个视频添加事件监听
-    videos.forEach((video, index) => {
-        video.addEventListener('play', function () {
-            // 找到当前标记为 1 的视频并暂停它
-            const currentlyPlayingIndex = videoStates.indexOf(1); // 查找状态为 1 的视频索引
-            if (currentlyPlayingIndex !== -1 && currentlyPlayingIndex !== index) {
-                videos[currentlyPlayingIndex].pause(); // 暂停标记为 1 的视频
-                console.log(`暂停视频：${videos[currentlyPlayingIndex].currentSrc}`);
-            }
-
-            // 更新状态
-            videoStates[currentlyPlayingIndex] = currentlyPlayingIndex === -1 ? 0 : 0; // 将暂停的视频状态改为 0
-            videoStates[index] = 1; // 当前播放的视频标记为 1
-
-            console.log(`当前播放视频：${video.currentSrc}，状态：`, videoStates);
-        });
-    });
 });
