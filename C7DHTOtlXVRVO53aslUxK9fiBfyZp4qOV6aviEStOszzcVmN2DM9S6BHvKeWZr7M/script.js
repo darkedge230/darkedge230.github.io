@@ -221,8 +221,8 @@ function createBackToTopButton() {
     const backToTopButton = document.createElement('div');
     backToTopButton.innerHTML = '&#x25B2;'; // 上箭头符号
     backToTopButton.style.position = 'fixed';
-    backToTopButton.style.bottom = '50px';
-    backToTopButton.style.right = '20px';
+    backToTopButton.style.bottom = '20px';  // 调整为你需要的底部位置
+    backToTopButton.style.right = '20px';   // 调整为你需要的右侧位置
     backToTopButton.style.width = '50px';
     backToTopButton.style.height = '50px';
     backToTopButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 透明背景
@@ -234,22 +234,13 @@ function createBackToTopButton() {
     backToTopButton.style.fontSize = '24px';
     backToTopButton.style.cursor = 'pointer';
     backToTopButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-    backToTopButton.style.transition = 'opacity 0.3s ease';
+    backToTopButton.style.opacity = '1'; // 始终可见
+    backToTopButton.style.visibility = 'visible'; // 始终可见
+    backToTopButton.style.transition = 'opacity 0.3s ease'; // 可选的动画效果
     backToTopButton.style.zIndex = '9999999999'; // 确保在最上层
 
     // 将按钮添加到页面中
     document.body.appendChild(backToTopButton);
-
-    // 滚动事件监听
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) {
-            backToTopButton.style.opacity = '1';
-            backToTopButton.style.visibility = 'visible';
-        } else {
-            backToTopButton.style.opacity = '0';
-            backToTopButton.style.visibility = 'hidden';
-        }
-    });
 
     // 点击按钮后，平滑滚动到指定元素
     backToTopButton.addEventListener('click', () => {
@@ -275,5 +266,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // 绑定 scrollToElement 函数到全局
     window.scrollToElement = scrollToElement;
 });
-
 
