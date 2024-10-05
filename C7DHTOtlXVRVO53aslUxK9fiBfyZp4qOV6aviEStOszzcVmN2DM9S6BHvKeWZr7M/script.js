@@ -109,32 +109,37 @@ document.addEventListener("click", function () {
 
 
 
-// preview.js
 
-// 获取所有的预览img容器和预览层
-const previewImgs = document.querySelectorAll('.预览img');
-const previewOverlay = document.getElementById('preview-overlay');
-const previewImage = document.getElementById('preview-image');
 
-// 为每个预览img添加点击事件
-previewImgs.forEach(imgContainer => {
-    imgContainer.addEventListener('click', function() {
-        const imgSrc = this.querySelector('img').src;
-        previewImage.src = imgSrc;
 
-        // 获取当前滚动位置
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        previewOverlay.style.top = scrollTop + 'px';
+document.addEventListener('DOMContentLoaded', function () {
+    const simgElements = document.querySelectorAll('simg');
+    const previewModal = document.getElementById('preview-modal');
+    const previewImage = document.getElementById('preview-image');
 
-        previewOverlay.classList.add('active');
+    simgElements.forEach(simg => {
+        const img = document.createElement('img');
+        img.src = simg.getAttribute('src');
+        simg.appendChild(img);
+
+        simg.addEventListener('click', function () {
+            previewImage.src = img.src;
+            previewModal.classList.remove('hidden');
+            alignPreviewModal();
+        });
     });
-});
 
-// 点击空白处关闭预览
-previewOverlay.addEventListener('click', function(e) {
-    if (e.target === previewOverlay) {
-        previewOverlay.classList.remove('active');
-        previewOverlay.style.top = '0'; // 重置位置
+    previewModal.addEventListener('click', function (e) {
+        if (e.target === previewModal || e.target === previewImage) {
+            previewModal.classList.add('hidden');
+        }
+    });
+
+    window.addEventListener('scroll', alignPreviewModal);
+
+    function alignPreviewModal() {
+        const scrollTop = window.scrollY;
+        previewModal.style.top = `${scrollTop}px`;
     }
 });
 
