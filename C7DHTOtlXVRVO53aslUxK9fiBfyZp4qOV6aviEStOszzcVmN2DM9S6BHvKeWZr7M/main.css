@@ -773,23 +773,6 @@ template {
     cursor: pointer; /* 鼠标悬停时显示手型 */
 }
 
-.media-container video {
-    position: relative; /* 为了使播放图标相对定位 */
-}
-
-.media-container video::before {
-    content: '▶'; /* 播放图标 */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 50px;
-    color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
-    pointer-events: none; /* 确保点击不会影响视频本身 */
-    z-index: 1; /* 确保图标在视频之上 */
-}
-
-
 /* 第一种尺寸：宽度600，高度范围50到1200 */
 .type1 {
     width: 600px;
@@ -827,4 +810,29 @@ template {
     opacity: 0;
     transition: opacity 0.5s ease;
     z-index: 100000;
+}
+
+/* 视频包裹容器 */
+.video-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* 播放图标样式 */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-image: url('./icons/play-icon.png'); /* 自定义播放图标的路径 */
+    background-size: cover;
+    pointer-events: none; /* 禁止该图标影响点击事件 */
+    opacity: 0.7;
+}
+
+/* 鼠标悬停时播放图标微弱变亮 */
+.video-wrapper:hover .play-icon {
+    opacity: 1;
 }
