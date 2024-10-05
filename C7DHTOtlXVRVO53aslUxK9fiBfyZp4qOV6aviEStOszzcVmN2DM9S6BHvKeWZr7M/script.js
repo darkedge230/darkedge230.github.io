@@ -211,3 +211,30 @@ if (lastVisit && now - lastVisit > TWO_HOURS) {
     localStorage.setItem('lastVisit', now);
 }
 
+
+
+
+
+
+// 获取按钮元素
+const backToTopButton = document.getElementById('backToTop');
+
+// 监听页面滚动事件
+window.addEventListener('scroll', () => {
+    // 如果滚动距离超过200px，显示按钮
+    if (window.scrollY > 200) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+// 点击按钮时，平滑滚动到页面顶部
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 平滑滚动
+    });
+});
+
+
