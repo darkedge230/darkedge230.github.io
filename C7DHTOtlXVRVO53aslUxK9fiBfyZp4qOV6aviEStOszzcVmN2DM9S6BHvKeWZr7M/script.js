@@ -90,14 +90,20 @@ document.addEventListener("click", function () {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector('.image-container');
 
-    container.addEventListener('click', function(event) {
-        if (event.target.tagName === 'IMG') {
-            openPreview(event.target.src);
-        }
-    });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector('.image-containerr');  // 修复了这个选择器
+
+    if (container) {  // 增加容错处理，确保容器存在
+        container.addEventListener('click', function(event) {
+            if (event.target.tagName === 'IMG') {
+                openPreview(event.target.src);
+            }
+        });
+    }
 
     function openPreview(src) {
         const preview = document.createElement('div');
@@ -125,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 
 
