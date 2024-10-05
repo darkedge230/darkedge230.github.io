@@ -95,58 +95,50 @@ document.addEventListener("click", function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const containers = document.querySelectorAll('.image-containerr'); // 获取所有的 image-containerr 容器
+    const mediaContainers = document.querySelectorAll('.media-container'); // 获取所有的 media-container 容器
 
-    containers.forEach(container => {
+    mediaContainers.forEach(container => {
         container.addEventListener('click', function(event) {
-            if (event.target.tagName === 'IMG') {
-                openPreview(event.target.src);
+            if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
+                openPreview(event.target.tagName === 'VIDEO' ? event.target.currentSrc : event.target.src, event.target.tagName);
             }
         });
     });
 
-    function openPreview(src) {
+    function openPreview(src, type) {
         // 创建预览层
         const preview = document.createElement('div');
-        preview.className = 'preview-img';
-        preview.style.position = 'fixed';
-        preview.style.top = '0';
-        preview.style.left = '0';
-        preview.style.width = '100vw';
-        preview.style.height = '100vh';
-        preview.style.display = 'flex';
-        preview.style.alignItems = 'center';
-        preview.style.justifyContent = 'center';
-        preview.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        preview.style.opacity = '0';  // 初始透明度为 0
-        preview.style.transition = 'opacity 0.5s ease';  // 渐变效果
-        preview.style.zIndex = '99999';  // 确保预览层处于最上层
+        preview.className = 'preview-media';
+        
+        // 创建媒体元素（图片或视频）
+        let media;
+        if (type === 'IMG') {
+            media = document.createElement('img');
+            media.src = src;
+        } else if (type === 'VIDEO') {
+            media = document.createElement('video');
+            media.src = src;
+            media.controls = true;  // 视频控制
+            media.autoplay = true;  // 自动播放
+        }
+        media.style.opacity = '0';  // 初始透明度为 0
 
-        // 创建图片
-        const img = document.createElement('img');
-        img.src = src;
-        img.style.maxWidth = '90%';
-        img.style.maxHeight = '90%';
-        img.style.opacity = '0';  // 图片初始透明度为 0
-        img.style.transition = 'opacity 0.5s ease';  // 渐变效果
-        img.style.zIndex = '100000';
-
-        // 将图片添加到预览层中
-        preview.appendChild(img);
+        // 将媒体添加到预览层中
+        preview.appendChild(media);
         document.body.appendChild(preview);
 
         // 设置渐变显示效果
         setTimeout(() => {
             preview.style.opacity = '1';  // 使预览层逐渐显示
-            img.style.opacity = '1';  // 使图片逐渐显示
+            media.style.opacity = '1';  // 使媒体逐渐显示
         }, 10);  // 短暂延迟，确保元素已经插入 DOM
 
         // 关闭预览层（点击空白处）
         preview.addEventListener('click', function(event) {
-            if (event.target !== img) {  // 确保点击的是背景，而不是图片
+            if (event.target !== media) {  // 确保点击的是背景，而不是媒体
                 // 开始渐变关闭效果
                 preview.style.opacity = '0';  // 设置预览层渐变隐藏
-                img.style.opacity = '0';  // 设置图片渐变隐藏
+                media.style.opacity = '0';  // 设置媒体渐变隐藏
 
                 // 延迟移除元素，等待渐变效果完成
                 setTimeout(() => {
