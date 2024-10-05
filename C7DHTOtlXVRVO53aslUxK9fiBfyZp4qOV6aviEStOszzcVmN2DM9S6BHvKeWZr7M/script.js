@@ -216,25 +216,52 @@ if (lastVisit && now - lastVisit > TWO_HOURS) {
 
 
 
-// 获取按钮元素
-const backToTopButton = document.getElementById('backToTop');
+// 创建并插入返回顶部按钮
+function createBackToTopButton() {
+    const backToTopButton = document.createElement('div');
+    backToTopButton.innerHTML = '&#x25B2;'; // 上箭头符号
+    backToTopButton.style.position = 'fixed';
+    backToTopButton.style.bottom = '20px';
+    backToTopButton.style.right = '20px';
+    backToTopButton.style.width = '50px';
+    backToTopButton.style.height = '50px';
+    backToTopButton.style.backgroundColor = '#007BFF'; // 背景颜色
+    backToTopButton.style.borderRadius = '50%'; // 圆形按钮
+    backToTopButton.style.display = 'flex';
+    backToTopButton.style.justifyContent = 'center';
+    backToTopButton.style.alignItems = 'center';
+    backToTopButton.style.color = 'white';
+    backToTopButton.style.fontSize = '24px';
+    backToTopButton.style.cursor = 'pointer';
+    backToTopButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+    backToTopButton.style.transition = 'opacity 0.3s ease';
+    backToTopButton.style.zIndex = '99999999999999999999999'; // 确保在最上层
 
-// 监听页面滚动事件
-window.addEventListener('scroll', () => {
-    // 如果滚动距离超过200px，显示按钮
-    if (window.scrollY > 200) {
-        backToTopButton.classList.add('show');
-    } else {
-        backToTopButton.classList.remove('show');
-    }
-});
+    // 将按钮添加到页面中
+    document.body.appendChild(backToTopButton);
 
-// 点击按钮时，平滑滚动到页面顶部
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 平滑滚动
+    // 滚动事件监听
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            backToTopButton.style.opacity = '1';
+            backToTopButton.style.visibility = 'visible';
+        } else {
+            backToTopButton.style.opacity = '0';
+            backToTopButton.style.visibility = 'hidden';
+        }
     });
-});
+
+    // 点击事件，平滑滚动回顶部
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 平滑滚动
+        });
+    });
+}
+
+// 调用函数创建按钮
+createBackToTopButton();
+
 
 
