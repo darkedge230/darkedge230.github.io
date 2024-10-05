@@ -187,3 +187,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+
+
+// 定义两小时的时间间隔 (7200000 毫秒 = 2 小时)
+const TWO_HOURS = 2 * 60 * 60 * 1000;
+
+// 获取当前时间戳
+const now = new Date().getTime();
+
+// 获取上次访问时间
+const lastVisit = localStorage.getItem('lastVisit');
+
+// 如果存在上次访问时间，并且与当前时间差值大于两小时，强制刷新缓存
+if (lastVisit && now - lastVisit > TWO_HOURS) {
+    // 清理缓存，强制刷新
+    localStorage.clear();
+    window.location.reload(true);  // true 表示强制从服务器获取最新资源
+} else {
+    // 记录当前访问时间
+    localStorage.setItem('lastVisit', now);
+}
+
