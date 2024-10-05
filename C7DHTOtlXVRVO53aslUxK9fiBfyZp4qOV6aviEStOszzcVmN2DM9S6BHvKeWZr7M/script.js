@@ -95,15 +95,15 @@ document.addEventListener("click", function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector('.image-containerr');  // 修复了这个选择器
+    const containers = document.querySelectorAll('.image-containerr');  // 获取所有的 image-containerr
 
-    if (container) {
+    containers.forEach(container => {
         container.addEventListener('click', function(event) {
             if (event.target.tagName === 'IMG') {
                 openPreview(event.target.src);
             }
         });
-    }
+    });
 
     function openPreview(src) {
         const preview = document.createElement('div');
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         preview.style.alignItems = 'center';
         preview.style.justifyContent = 'center';
         preview.style.backgroundColor = 'rgba(0,0,0,0.8)';
-        preview.style.zIndex = '999999999';  // 确保预览层处于最上层
+        preview.style.zIndex = '99999';  // 确保预览层处于最上层
 
         const img = document.createElement('img');
         img.src = src;
