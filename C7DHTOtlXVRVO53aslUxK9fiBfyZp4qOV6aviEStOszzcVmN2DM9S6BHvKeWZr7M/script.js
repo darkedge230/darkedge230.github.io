@@ -109,25 +109,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const preview = document.createElement('div');
         preview.className = 'preview-img';
         preview.style.position = 'fixed';
-        preview.style.top = '0'; // 设为0，让它从页面顶部开始
+        preview.style.top = '0';
         preview.style.left = '0';
         preview.style.width = '100vw';
         preview.style.height = '100vh';
         preview.style.display = 'flex';
-        preview.style.alignItems = 'center'; // 垂直居中
-        preview.style.justifyContent = 'center'; // 水平居中
+        preview.style.alignItems = 'center';
+        preview.style.justifyContent = 'center';
         preview.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        preview.style.zIndex = '999999999';  // 确保预览层处于最上层
 
         const img = document.createElement('img');
         img.src = src;
         img.style.maxWidth = '90%';
         img.style.maxHeight = '90%';
+        img.style.zIndex = '100000';  // 确保图片也处于最上层
 
         preview.appendChild(img);
         document.body.appendChild(preview);
 
-        preview.addEventListener('click', function() {
-            preview.remove();
+        // 点击预览层任何地方关闭
+        preview.addEventListener('click', function(event) {
+            if (event.target !== img) {  // 确保点击的是背景，而不是图片
+                preview.remove();
+            }
         });
     }
 });
