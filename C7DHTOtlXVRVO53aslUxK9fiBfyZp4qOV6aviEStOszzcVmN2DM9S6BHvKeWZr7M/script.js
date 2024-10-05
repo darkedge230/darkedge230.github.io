@@ -1,29 +1,4 @@
-    document.addEventListener('DOMContentLoaded', function() {
-        checkVisitor();
-    });
 
-    function checkVisitor() {
-        const currentTime = new Date().getTime();  // 获取当前时间戳
-        const visitor = localStorage.getItem('visitor');  // 获取访问者标记
-        const visitTime = localStorage.getItem('visitTime');  // 获取访问者的访问时间
-
-        if (visitor && visitTime) {
-            const timeDifference = currentTime - visitTime;
-
-            if (timeDifference > 10 * 60 * 1000) {
-                localStorage.removeItem('visitor');
-                localStorage.removeItem('visitTime');
-                window.location.href = "https://ishortn.ink/AdwrZUg6T";  // 替换为你的跳转页面
-            } else {
-                console.log('已标记的访问者，标记未过期，继续浏览页面');
-            }
-        } else {
-            localStorage.setItem('visitor', 'true');
-            localStorage.setItem('visitTime', currentTime);
-            console.log('新访问者，已标记');
-            window.location.href = "https://ishortn.ink/AdwrZUg6T";  // 替换为你的跳转页面
-        }
-    }
 
 
 
@@ -112,38 +87,20 @@ document.addEventListener("click", function () {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const simgElements = document.querySelectorAll('simg');
-    const previewModal = document.getElementById('preview-modal');
-    const previewImage = document.getElementById('preview-image');
-
-    simgElements.forEach(simg => {
-        const img = document.createElement('img');
-        img.src = simg.getAttribute('src');
-        simg.appendChild(img);
-
-        simg.addEventListener('click', function () {
-            previewImage.src = img.src;
-            previewModal.classList.remove('hidden');
-            alignPreviewModal();
+        document.querySelectorAll('.preview-img').forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.getElementById('overlay');
+                const overlayImg = document.getElementById('overlay-img');
+                overlayImg.src = this.src;
+                overlay.style.display = 'flex';
+            });
         });
-    });
 
-    previewModal.addEventListener('click', function (e) {
-        if (e.target === previewModal || e.target === previewImage) {
-            previewModal.classList.add('hidden');
-        }
-    });
-
-    window.addEventListener('scroll', alignPreviewModal);
-
-    function alignPreviewModal() {
-        const scrollTop = window.scrollY;
-        previewModal.style.top = `${scrollTop}px`;
-    }
-});
-
-
+        document.getElementById('overlay').addEventListener('click', function(e) {
+            if (e.target.id === 'overlay') {
+                this.style.display = 'none';
+            }
+        });
 
 
 
