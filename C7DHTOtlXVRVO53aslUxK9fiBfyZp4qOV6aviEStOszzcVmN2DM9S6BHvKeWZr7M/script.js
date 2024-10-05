@@ -87,20 +87,45 @@ document.addEventListener("click", function () {
 
 
 
-        document.querySelectorAll('.preview-img').forEach(img => {
-            img.addEventListener('click', function() {
-                const overlay = document.getElementById('overlay');
-                const overlayImg = document.getElementById('overlay-img');
-                overlayImg.src = this.src;
-                overlay.style.display = 'flex';
-            });
-        });
 
-        document.getElementById('overlay').addEventListener('click', function(e) {
-            if (e.target.id === 'overlay') {
-                this.style.display = 'none';
-            }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector('.image-container');
+
+    container.addEventListener('click', function(event) {
+        if (event.target.tagName === 'IMG') {
+            openPreview(event.target.src);
+        }
+    });
+
+    function openPreview(src) {
+        const preview = document.createElement('div');
+        preview.className = 'preview-img';
+        preview.style.position = 'fixed';
+        preview.style.top = window.scrollY + 'px';
+        preview.style.left = '0';
+        preview.style.width = '100vw';
+        preview.style.height = '100vh';
+        preview.style.display = 'flex';
+        preview.style.alignItems = 'center';
+        preview.style.justifyContent = 'center';
+        preview.style.backgroundColor = 'rgba(0,0,0,0.8)';
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+
+        preview.appendChild(img);
+        document.body.appendChild(preview);
+
+        preview.addEventListener('click', function() {
+            preview.remove();
         });
+    }
+});
+
 
 
 

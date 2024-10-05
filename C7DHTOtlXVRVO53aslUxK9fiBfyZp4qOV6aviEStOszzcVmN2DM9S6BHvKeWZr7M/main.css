@@ -755,42 +755,30 @@ template {
 
 
 
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .preview-img {
-            object-fit: cover;
-            cursor: pointer;
-            margin: 0;
-        }
-        .preview-img.type1 {
-            width: 600px;
-            height: 100%;
-            min-height: 100px;
-            max-height: 600px;
-        }
-        .preview-img.type2 {
-            width: 300px;
-            height: 100%;
-            min-height: 50px;
-            max-height: 300px;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .overlay img {
-            max-width: 90%;
-            max-height: 90%;
-        }
+
+ 
+ 
+.image-containerr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0; /* 确保图片间没有间隙 */
+}
+
+.image-container img {
+    display: block; /* 防止图片下方有间隙 */
+    object-fit: cover; /* 填充图片至容器尺寸，可能会裁剪 */
+}
+
+.type1 {
+    width: 600px;
+    height: 100%; /* 可以在JavaScript中动态设置 */
+    min-height: 100px;
+    max-height: 600px;
+}
+
+.type2 {
+    width: 300px;
+    height: 100%; /* 可以在JavaScript中动态设置 */
+    min-height: 50px;
+    max-height: 300px;
+}
