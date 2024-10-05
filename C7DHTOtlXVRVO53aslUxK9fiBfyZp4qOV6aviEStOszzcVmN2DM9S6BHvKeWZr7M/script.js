@@ -156,3 +156,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    let lastPlayedVideo = null; // 记录上一个播放的视频
+    let secondLastPlayedVideo = null; // 记录上上一个播放的视频
+
+    const videos = document.querySelectorAll('video'); // 获取页面中的所有视频元素
+
+    videos.forEach(video => {
+        video.addEventListener('play', function() {
+            // 暂停上上一个播放的视频
+            if (secondLastPlayedVideo && secondLastPlayedVideo !== video) {
+                secondLastPlayedVideo.pause();
+                console.log("暂停第二个视频:", secondLastPlayedVideo.currentSrc);
+            }
+
+            // 将上一个播放的视频设置为上上个
+            secondLastPlayedVideo = lastPlayedVideo;
+
+            // 更新当前播放的视频
+            lastPlayedVideo = video;
+
+            console.log("当前播放的视频:", video.currentSrc);
+        });
+    });
+});
