@@ -217,10 +217,13 @@ a {
 
 .first-line {
   text-align: left; /* 第一行居左 */
-  color: white; /* 字体颜色设置为红色 */
+  color: white; /* 字体颜色设置为白色 */
   font-size: 24px; /* 设置字体大小 */
   font-weight: bolder; /* 设置文本为更粗体 */
   text-transform: uppercase; /* 将文本转换为大写 */
+  max-width: 600px;
+  word-wrap: break-word; /* 长的单词自动换行 */
+  white-space: normal; /* 确保文字正常换行 */
 }
 
 
