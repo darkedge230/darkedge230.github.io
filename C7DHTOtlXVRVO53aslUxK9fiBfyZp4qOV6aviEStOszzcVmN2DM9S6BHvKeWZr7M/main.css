@@ -222,6 +222,7 @@ a {
   max-width: 600px;
   word-wrap: break-word; /* 长的单词自动换行 */
   white-space: normal; /* 确保文字正常换行 */
+  line-height: 1.5; /* 设置行间距 */
 }
 
 
