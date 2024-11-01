@@ -272,4 +272,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+    const playIcon = document.createElement('div');
+    playIcon.className = 'play-icon';
+    wrapper.appendChild(playIcon);
+});
+
+
+
 
