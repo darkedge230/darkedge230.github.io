@@ -822,6 +822,19 @@ template {
 }
 
 
+.video-wrapper .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* 根据需要调整大小 */
+    height: 60px; /* 根据需要调整大小 */
+    background-image: url('path/to/play-icon.png'); /* 替换为实际播放图标的路径 */
+    background-size: cover;
+    pointer-events: none; /* 确保图标不干扰点击事件 */
+    opacity: 0.8; /* 适当的透明度 */
+    z-index: 10; /* 确保图标在视频上方 */
+}
 
 
 
