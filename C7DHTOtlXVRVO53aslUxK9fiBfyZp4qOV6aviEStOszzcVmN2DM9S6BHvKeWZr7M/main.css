@@ -827,15 +827,24 @@ template {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px; /* 根据需要调整大小 */
-    height: 60px; /* 根据需要调整大小 */
-    background-image: url('path/to/play-icon.png'); /* 替换为实际播放图标的路径 */
-    background-size: cover;
+    width: 80px; /* 圆圈的直径 */
+    height: 80px; /* 圆圈的直径 */
+    border: 5px solid rgba(128, 128, 128, 0.5); /* 灰色透明圆圈 */
+    border-radius: 50%; /* 圆形 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     pointer-events: none; /* 确保图标不干扰点击事件 */
-    opacity: 0.8; /* 适当的透明度 */
-    z-index: 10; /* 确保图标在视频上方 */
 }
 
+.play-icon::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 15px solid white; /* 白色三角形的左边 */
+    border-top: 10px solid transparent; /* 三角形的顶部透明 */
+    border-bottom: 10px solid transparent; /* 三角形的底部透明 */
+}
 
 
 
