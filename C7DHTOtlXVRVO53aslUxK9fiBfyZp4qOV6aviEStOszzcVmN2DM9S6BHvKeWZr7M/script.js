@@ -272,10 +272,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+document.querySelectorAll('.preview-media img, .preview-media video').forEach(media => {
     const playIcon = document.createElement('div');
     playIcon.className = 'play-icon';
-    wrapper.appendChild(playIcon);
+    media.parentElement.appendChild(playIcon);
 });
 
 
