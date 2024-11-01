@@ -830,7 +830,7 @@ template {
     height: 100%;
     pointer-events: none; /* 确保覆盖层不影响点击事件 */
     background: rgba(255, 255, 255, 0.1); /* 可选：添加一些背景色以增强粒子效果可见性 */
-    filter: blur(10px); /* 增加模糊度 */
+    filter: blur(100px); /* 增加模糊度 */
 }
 
 /* 粒子样式 */
