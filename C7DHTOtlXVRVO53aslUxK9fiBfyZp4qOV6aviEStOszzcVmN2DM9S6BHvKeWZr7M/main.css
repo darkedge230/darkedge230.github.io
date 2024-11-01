@@ -813,16 +813,14 @@ template {
     z-index: 100000;
 }
 
-
-
 .video-wrapper {
     position: relative;
     display: inline-block;
     overflow: hidden; /* 确保粒子效果在边界内 */
 }
 
-
-.preview-media .play-icon {
+/* 播放图标样式 */
+.play-icon {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -835,6 +833,7 @@ template {
     align-items: center;
     justify-content: center;
     pointer-events: none; /* 确保图标不干扰点击事件 */
+    z-index: 100001; /* 确保在最上面 */
 }
 
 .play-icon::before {
@@ -845,6 +844,9 @@ template {
     border-top: 10px solid transparent; /* 三角形的顶部透明 */
     border-bottom: 10px solid transparent; /* 三角形的底部透明 */
 }
+
+
+
 
 
 
