@@ -267,3 +267,46 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollToElement = scrollToElement;
 });
 
+
+
+
+
+
+
+// 创建粒子覆盖层
+const videoWrapper = document.querySelector('.video-wrapper');
+const particleOverlay = document.createElement('div');
+particleOverlay.className = 'particle-overlay';
+videoWrapper.appendChild(particleOverlay);
+
+// 生成粒子
+function createParticles(numParticles) {
+    for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // 设置随机位置和大小
+        const size = Math.random() * 5 + 5; // 粒子大小 5px 到 10px
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`; // 随机水平位置
+        particle.style.top = `${Math.random() * 100}%`; // 随机垂直位置
+
+        // 将粒子添加到覆盖层
+        particleOverlay.appendChild(particle);
+    }
+}
+
+// 启动粒子效果
+createParticles(50); // 生成50个粒子
+
+// 动画逻辑（可选，增加随机移动效果）
+setInterval(() => {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+        const randomX = (Math.random() - 0.5) * 20; // 随机水平移动
+        const randomY = (Math.random() - 0.5) * 20; // 随机垂直移动
+        particle.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+}, 1000); // 每秒更新粒子位置
+
