@@ -813,12 +813,6 @@ template {
     z-index: 100000;
 }
 
-.video-wrapper {
-    position: relative;
-    display: inline-block;
-    overflow: hidden; /* 确保粒子效果在边界内 */
-}
-
 
 
 
