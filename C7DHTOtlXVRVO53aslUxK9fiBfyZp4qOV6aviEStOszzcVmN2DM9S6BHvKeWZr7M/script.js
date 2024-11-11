@@ -272,11 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.querySelectorAll('.preview-media img, .preview-media video').forEach(media => {
-    const playIcon = document.createElement('div');
-    playIcon.className = 'play-icon';
-    media.parentElement.appendChild(playIcon);
-});
+
 
 
 
