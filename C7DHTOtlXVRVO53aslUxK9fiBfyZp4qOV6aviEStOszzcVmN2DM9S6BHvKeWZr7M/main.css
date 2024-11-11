@@ -819,32 +819,6 @@ template {
     overflow: hidden; /* 确保粒子效果在边界内 */
 }
 
-/* 播放图标样式 */
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px; /* 圆圈的直径 */
-    height: 80px; /* 圆圈的直径 */
-    border: 5px solid rgba(128, 128, 128, 0.5); /* 灰色透明圆圈 */
-    border-radius: 50%; /* 圆形 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; /* 确保图标不干扰点击事件 */
-    z-index: 100001; /* 确保在最上面 */
-}
-
-.play-icon::before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 15px solid white; /* 白色三角形的左边 */
-    border-top: 10px solid transparent; /* 三角形的顶部透明 */
-    border-bottom: 10px solid transparent; /* 三角形的底部透明 */
-}
-
 
 
 
